@@ -1,0 +1,168 @@
+.two.columns {
+  width: 13.12057%; }
+
+.three.columns {
+  width: 21.80851%; }
+
+.four.columns {
+  width: 30.49645%; }
+
+.eight.columns {
+  width: 65.24823%; }
+
+.twelve.columns {
+  width: 100%; }
+
+html {
+  letter-spacing: .08em; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #fecf00;
+  margin: 1em 0;
+  padding: 0; }
+
+i {
+  color: #fecf00; }
+
+.floatr {
+  float: right; }
+
+.green {
+  color: #4eae83; }
+
+.tan {
+  color: #efecdc; }
+
+.tanbg {
+  background: #efecdc; }
+
+.greenbg {
+  background: #9fd4cb; }
+
+.topheavy {
+  margin-top: 10px; }
+
+.bottomheavy {
+  margin-bottom: 10px; }
+
+.padbottom {
+  padding-bottom: 20px; }
+
+.yellowlink {
+  color: #fecf00; }
+
+.yellowlink:hover {
+  color: #fae34a; }
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  weight: 400; }
+
+.footer {
+  padding-top: 10px;
+  background: #efecdc; }
+
+#footerlogo {
+  float: left;
+  margin-left: 0; }
+
+.righty {
+  float: right;
+  text-align: right; }
+
+.footer2 {
+  margin: 15px 0 15px 0; }
+
+.container {
+  width: 100%;
+  margin: 0; }
+
+#bannerhome2 {
+  background: #efecdc url(../img/headerbg.png) no-repeat 50% 0%;
+  height: 400px; }
+
+#bannerhome2 .valign {
+  height: 400px; }
+
+.valign {
+  display: table;
+  width: 100%;
+  table-layout: fixed; }
+
+.valign > div {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%; }
+
+.abilifytop {
+  border-bottom: 1px solid #efecdc; }
+
+.abilify {
+  border-bottom: 1px solid #efecdc;
+  margin-top: 15px; }
+
+.arc {
+  text-align: center;
+  margin-right: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
+.arctext {
+  font-size: 26px; }
+
+.arc:last-child {
+  margin-right: 0px; }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges; }
+
+.axis text {
+  font-size: 10px; }
+
+.myfield {
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  vertical-align: middle;
+  font-size: 16px;
+  overflow: hidden; }
+
+.box {
+  position: relative;
+  border: none;
+  border-bottom: 2px solid #4eae83;
+  padding: 40px 20px;
+  height: 36px;
+  line-height: 34px;
+  font-size: 2rem;
+  max-width: 100%;
+  width: 100%;
+  outline: none;
+  resize: none;
+  font-family: "Comfortaa";
+  font-weight: 300;
+  box-shadow: none;
+  color: #fecf00; }
+
+::-webkit-input-placeholder {
+  color: #fecf00; }
+
+:-moz-placeholder {
+  color: #fecf00; }
+
+::-moz-placeholder {
+  color: #fecf00; }
+
+:-ms-input-placeholder {
+  color: #fecf00; }
+
+form ul .columns {
+  margin: 0; }
+
+/*# sourceMappingURL=_custom.css.map */

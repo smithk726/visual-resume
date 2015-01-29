@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Kaitlyn Smith</title>
+
+	<link rel="stylesheet" href="css/gumby.css">
+	<link rel="stylesheet" href="sass/_custom.css">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript" src="js/d3/d3.js"></script>
+
+</head>
+
+<body>
+	<!-- Header -->
+	<div class="container" id="bannerhome2">
+		<div>
+			<div class="valign text-center row">
+				<div>
+					<h1>Kaitlyn Smith</h1>
+					<h2>web designer <i class="icon-dot"></i> civil engineer</h2>
+					<br>
+					<p><i class="icon-phone" style="color:#4eae83"></i>407 555 5555</p>
+					<p><i class="icon-mail" style="color:#4eae83"></i>smithmail@somemail.com</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- About -->
+	<div class="container padbottom text-center">
+		<div class="row bottomheavy text-center">
+			<h1>Web Design</h1>
+			<hr>
+		</div>
+
+		<div class="row">
+			<h2>Advanced</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="advanced">
+			</div>
+		</div>
+
+		<div class="row">
+			<h2>Proficient</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="proficient">
+			</div>
+		</div>
+
+		<div class="row">
+			<h2>Emerging</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="emerging">
+			</div>
+		</div>
+
+
+
+		<script>
+		var dataset = [
+				{
+					"name":"HTML",
+					"level":100,
+					"div":"adv",
+					"exp":5,
+					"description":"Detail of exp"
+				},
+				{
+					"name":"CSS",
+					"level":95,
+					"div":"adv",
+					"exp":5,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"PHP",
+					"level":75,
+					"div":"pro",
+					"exp":2,
+					"description":"Detail of exp"
+				},
+				{
+					"name":"MySQL",
+					"level":70,
+					"div":"pro",
+					"exp":2,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"SASS",
+					"level":70,
+					"div":"pro",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"JavaScript",
+					"level":50,
+					"div":"pro",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Java",
+					"level":30,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"C",
+					"level":40,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Processing",
+					"level":30,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Python",
+					"level":20,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				}
+			];
+
+		function callArcs(num) {
+			//variables
+			var arcD = 280,
+				proArcD = 200,
+				emgArcD = 150,
+				adv = 90,
+				pro = 50,
+				advInner = 90,
+				advOuter = 140,
+				proInner = 70,
+				proOuter = 100,
+				emgInner = 60,
+				emgOuter = 75,
+				divid = '';
+
+			//arc specs
+			var drawArc = d3.svg.arc()
+				.innerRadius(function() {
+					if (dataset[num].div == 'adv') {
+						return advInner;
+					}
+					else if (dataset[num].div == 'pro') {
+						return proInner;
+					}
+					else {
+						return emgInner;
+					}
+				})
+				.outerRadius(function() {
+					if (dataset[num].div == 'adv') {
+						return advOuter;
+					}
+					else if (dataset[num].div == 'pro') {
+						return proOuter;
+					}
+					else {
+						return emgOuter;
+					}
+				})
+				.startAngle(0);
+
+			if (dataset[num].div == 'adv') {
+				divid = '#advanced';
+			}
+			else if (dataset[num].div == 'pro') {
+				divid = '#proficient';
+			}
+			else {
+				divid = '#emerging';
+			}
+
+			//svg container
+			var display = d3.select(divid)
+				.append('svg')
+				.attr('class', 'arc')
+				.attr('width', function() {
+					if (dataset[num].div == 'adv') {
+						return arcD;
+					}
+					else if (dataset[num].div == 'pro') {
+						return proArcD;
+					}
+					else {
+						return emgArcD;
+					}
+				})
+				.attr('height', function() {
+					if (dataset[num].div == 'adv') {
+						return arcD;
+					}
+					else if (dataset[num].div == 'pro') {
+						return proArcD;
+					}
+					else {
+						return emgArcD;
+					}
+				})
+				.on('mouseover',function(){
+					display.selectAll('text').remove();
+					display.append('text').text(dataset[num].exp + ' years exp')
+					.attr('class', 'arctext')
+					.attr('transform', 'translate(0,5)')
+					.attr('text-anchor', 'middle');
+				})
+				.on('mouseout',function(){
+					display.selectAll('text').remove();
+					display.append('text').text(dataset[num].name)
+					.attr('class', 'arctext')
+					.attr('transform', 'translate(0,5)')
+					.attr('text-anchor', 'middle');
+				})
+				.append('g')
+				.attr('transform', function() {
+					if (dataset[num].div == 'adv') {
+						return 'translate(' + arcD/2 + ',' + arcD/2 + ')';
+					}
+					else if (dataset[num].div == 'pro') {
+						return 'translate(' + proArcD/2 + ',' + proArcD/2 + ')';
+					}
+					else {
+						return 'translate(' + emgArcD/2 + ',' + emgArcD/2 + ')';
+					}
+				});
+
+			//adding bg arc
+			var arcBG = display.append('path')
+				.datum({
+					endAngle: 2*Math.PI
+				})
+				.attr('fill','#efecdc')
+				.attr('d', drawArc)
+			
+			//adding the arc to the svg
+			var arc = display.append('path')
+				.datum({
+					endAngle: 360*( (dataset[num].level/100) * (Math.PI/180))
+				})
+				.attr('fill', function() {
+					if (dataset[num].div == 'adv') {
+						return '#4eae83';
+					}
+					else if (dataset[num].div == 'pro') {
+						return '#9fd4cb';
+					}
+					else {
+						return '#fecf00';
+					}
+				})
+				.attr('d', drawArc);
+
+			//adding text for label
+			display.append('text')
+				.text(dataset[num].name)
+				.attr('class', 'arctext')
+				.attr('transform', 'translate(0,5)')
+				.attr('text-anchor', 'middle');
+		}
+
+		var i = 0;
+
+		while (i < dataset.length) {
+			callArcs(i);
+			i++;
+		}
+
+		</script>
+	</div>
+
+
+	<!-- Skills -->
+	<div class="container tanbg padbottom">
+		<div class="row">
+			<div class="twelve columns text-center">
+				<h1>Civil Engineering</h1>
+				<hr>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			var dataset2 = [
+				{
+					"name":"Calculus",
+					"level":100,
+					"div":"#eng01",
+					"exp":5,
+					"description":"Detail of exp"
+				},
+				{
+					"name":"Physics",
+					"level":90,
+					"div":"#eng02",
+					"exp":3,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Chemistry",
+					"level":85,
+					"div":"#eng03",
+					"exp":3,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Biology",
+					"level":75,
+					"div":"#eng04",
+					"exp":3,
+					"description":"Detail of exp 2"
+				}
+			];
+
+		</script>
+	</div>
+
+
+	<!-- Experience -->
+	<div class="container padbottom greenbg">
+		<div class="row bottomheavy text-center">
+			<h1 style="padding-bottom:5px">Experience</h1>
+			<h5 style="color:#282828"></h5>
+			<hr>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="expHolder">
+				<script type="text/javascript">
+				/*  few sections focusing on the areas you want to focus on (code and design)
+				*/
+						var w = 800;
+						var h = 200;
+
+						var x = d3.scale.linear()
+							.domain([0,2])
+							.range([0,w]);
+
+						//line data
+						var line01 = [
+							{'x':5, 'y':5},
+							{'x':200, 'y':5}
+						];
+						//lets try adding a second line
+						var line02 = [
+							{'x':25, 'y':45},
+							{'x':500, 'y':45}
+						];
+
+						//accessor function to draw the line
+						var drawLine = d3.svg.line()
+							.x(function(d) {
+								return d.x;
+							})
+							.y(function(d) {
+								return d.y;
+							})
+							.interpolate('linear');
+						//svg container
+						var lineDisplay = d3.select('#expHolder').append('svg')
+							.attr('width', w)
+							.attr('height', h);
+						//draw the line path
+						var lineGraph = lineDisplay.append('path')
+							.attr('d', drawLine(line01))
+							.attr('stroke', '#efecdc')
+							.attr('stroke-width',10)
+							.attr('fill','none');
+						var lineGraph = lineDisplay.append('path')
+							.attr('d', drawLine(line02))
+							.attr('stroke', '#4eae83')
+							.attr('stroke-width',10)
+							.attr('fill','none');
+
+						var xaxis = d3.svg.axis()
+							.scale(x)
+							.orient('bottom');
+						lineDisplay.append('g')
+							.attr('class','axis')
+							.attr('transform','translate(0,' + (h-20) + ')')
+							.call(xaxis);
+					</script>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- footer2 -->
+	<div class="footer2">
+		<div class="row">
+			<div class="four columns">
+				<h6>Made with <i class="icon-heart"></i> in Florida</h6>
+			</div>
+			<div class="push_three five columns">
+				<h6 class="righty">2015. All Rights Reserved.</h6>
+			</div>
+		</div>
+	</div>
+	
+
+  </body>
+</html>
