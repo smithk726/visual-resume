@@ -49,6 +49,7 @@ I really like what you have going on here! you should indicate somewhere that yo
 
 Looks super great I guess I should really get started on this project 
 
-
+scale down a little, play with the sizes
+clarity of the visualization
 
 
