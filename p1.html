@@ -22,7 +22,6 @@
 					<h1>Kaitlyn Smith</h1>
 					<h2>web designer <i class="icon-dot"></i> civil engineer</h2>
 					<br>
-					<p><i class="icon-phone" style="color:#4eae83"></i>407 555 5555</p>
 					<p><i class="icon-mail" style="color:#4eae83"></i>smithmail@somemail.com</p>
 				</div>
 			</div>
@@ -32,6 +31,13 @@
 
 	<!-- About -->
 	<div class="container padbottom text-center">
+
+		<div class="absolute tooltip" id="toolit">
+			<h3 id="language"></h3>
+			<p><strong>Years: </strong><span id="expyr"></span></p>
+			<p><strong>Details: </strong><span id="details"></span></p>
+		</div>
+
 		<div class="row bottomheavy text-center">
 			<h1>Web Design</h1>
 			<hr>
@@ -64,41 +70,42 @@
 			</div>
 		</div>
 
-
-
 		<script>
-		var dataset = [
+		var dataAdv = [
 				{
 					"name":"HTML",
-					"level":100,
+					"level":95,
 					"div":"adv",
 					"exp":5,
 					"description":"Detail of exp"
 				},
 				{
 					"name":"CSS",
-					"level":95,
+					"level":90,
 					"div":"adv",
 					"exp":5,
 					"description":"Detail of exp 2"
-				},
+				}
+			];
+
+		var dataPro = [
 				{
 					"name":"PHP",
-					"level":75,
+					"level":70,
 					"div":"pro",
 					"exp":2,
 					"description":"Detail of exp"
 				},
 				{
 					"name":"MySQL",
-					"level":70,
+					"level":65,
 					"div":"pro",
 					"exp":2,
 					"description":"Detail of exp 2"
 				},
 				{
 					"name":"SASS",
-					"level":70,
+					"level":60,
 					"div":"pro",
 					"exp":1,
 					"description":"Detail of exp 2"
@@ -109,7 +116,10 @@
 					"div":"pro",
 					"exp":1,
 					"description":"Detail of exp 2"
-				},
+				}
+			];
+
+		var dataEmg = [
 				{
 					"name":"Java",
 					"level":30,
@@ -125,13 +135,6 @@
 					"description":"Detail of exp 2"
 				},
 				{
-					"name":"Processing",
-					"level":30,
-					"div":"emg",
-					"exp":1,
-					"description":"Detail of exp 2"
-				},
-				{
 					"name":"Python",
 					"level":20,
 					"div":"emg",
@@ -140,39 +143,39 @@
 				}
 			];
 
-		function callArcs(num) {
+		function callArcs(dataset, puthere) {
+
 			//variables
-			var arcD = 280,
+			var arcD = 240,
 				proArcD = 200,
-				emgArcD = 150,
+				emgArcD = 160,
 				adv = 90,
 				pro = 50,
-				advInner = 90,
-				advOuter = 140,
+				advInner = 80,
+				advOuter = 120,
 				proInner = 70,
 				proOuter = 100,
 				emgInner = 60,
-				emgOuter = 75,
-				divid = '';
+				emgOuter = 80;
 
 			//arc specs
 			var drawArc = d3.svg.arc()
-				.innerRadius(function() {
-					if (dataset[num].div == 'adv') {
+				.innerRadius(function(d) {
+					if (d['div'] == 'adv') {
 						return advInner;
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return proInner;
 					}
 					else {
 						return emgInner;
 					}
 				})
-				.outerRadius(function() {
-					if (dataset[num].div == 'adv') {
+				.outerRadius(function(d) {
+					if (d['div'] == 'adv') {
 						return advOuter;
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return proOuter;
 					}
 					else {
@@ -181,62 +184,47 @@
 				})
 				.startAngle(0);
 
-			if (dataset[num].div == 'adv') {
-				divid = '#advanced';
-			}
-			else if (dataset[num].div == 'pro') {
-				divid = '#proficient';
-			}
-			else {
-				divid = '#emerging';
-			}
+			//tooltip
+			var tooltip = d3.select(puthere)
+				.append("div")
+				.style("position", "absolute")
+				.style("z-index", "10")
+				.style("visibility", "hidden");
 
 			//svg container
-			var display = d3.select(divid)
+			var display = d3.select(puthere).selectAll('arcs')
+				.data(dataset)
+				.enter()
 				.append('svg')
 				.attr('class', 'arc')
-				.attr('width', function() {
-					if (dataset[num].div == 'adv') {
+				.attr('width', function(d) {
+					if (d['div'] == 'adv') {
 						return arcD;
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return proArcD;
 					}
 					else {
 						return emgArcD;
 					}
 				})
-				.attr('height', function() {
-					if (dataset[num].div == 'adv') {
+				.attr('height', function(d) {
+					if (d['div'] == 'adv') {
 						return arcD;
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return proArcD;
 					}
 					else {
 						return emgArcD;
 					}
-				})
-				.on('mouseover',function(){
-					display.selectAll('text').remove();
-					display.append('text').text(dataset[num].exp + ' years exp')
-					.attr('class', 'arctext')
-					.attr('transform', 'translate(0,5)')
-					.attr('text-anchor', 'middle');
-				})
-				.on('mouseout',function(){
-					display.selectAll('text').remove();
-					display.append('text').text(dataset[num].name)
-					.attr('class', 'arctext')
-					.attr('transform', 'translate(0,5)')
-					.attr('text-anchor', 'middle');
 				})
 				.append('g')
-				.attr('transform', function() {
-					if (dataset[num].div == 'adv') {
+				.attr('transform', function(d) {
+					if (d['div'] == 'adv') {
 						return 'translate(' + arcD/2 + ',' + arcD/2 + ')';
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return 'translate(' + proArcD/2 + ',' + proArcD/2 + ')';
 					}
 					else {
@@ -246,51 +234,108 @@
 
 			//adding bg arc
 			var arcBG = display.append('path')
-				.datum({
-					endAngle: 2*Math.PI
+				.each(function(d) {
+					d.endAngle = 2*Math.PI;
 				})
-				.attr('fill','#efecdc')
+				.attr('fill', function() {
+					if(dataset == dataAdv || dataset == dataPro || dataset == dataEmg) {
+						return '#efecdc';
+					}
+					else {
+						return 'white';
+					}
+				})
 				.attr('d', drawArc)
 			
 			//adding the arc to the svg
 			var arc = display.append('path')
-				.datum({
-					endAngle: 360*( (dataset[num].level/100) * (Math.PI/180))
-				})
-				.attr('fill', function() {
-					if (dataset[num].div == 'adv') {
+				.attr('fill', function(d) {
+					if (d['div'] == 'adv') {
 						return '#4eae83';
 					}
-					else if (dataset[num].div == 'pro') {
+					else if (d['div'] == 'pro') {
 						return '#9fd4cb';
 					}
 					else {
 						return '#fecf00';
 					}
 				})
-				.attr('d', drawArc);
+				.each(function(d) {
+					d.endAngle = (360 * (d['level']/100) * Math.PI/180);
+				})
+				.attr('d', drawArc)
+				.transition()
+				.duration(1000)
+				.ease('bounce')
+				.call(arcTween,this);
 
 			//adding text for label
 			display.append('text')
-				.text(dataset[num].name)
+				.text(function(d) {
+					return d['name'];
+				})
 				.attr('class', 'arctext')
 				.attr('transform', 'translate(0,5)')
 				.attr('text-anchor', 'middle');
+
+			function arcTween(transition, newAngle) {
+				transition.attrTween('d', function(d) {
+					var interpolate = d3.interpolate(0,360 * (d['level']/100) * Math.PI/180);
+					return function(t) {
+						d.endAngle = interpolate(t);
+						return drawArc(d);
+					};
+				});
+			}
+
+			//them darned tooltips
+			var tooltip = d3.selectAll(".tooltip:not(.css)");
+			var HTMLabsoluteTip = d3.select("div.tooltip.absolute");
+
+			d3.select(puthere).selectAll('svg')
+				.attr('title','Automatic Title Tooltip')
+				.on('mouseover', function(d) {
+					tooltip.style('opacity','1');
+
+					d3.select('#toolit')
+						.style('width', this.getAttribute('width') + 'px')
+						.style('height', this.getAttribute('height') + 'px')
+						.style('background', function() {
+							if(dataset == dataAdv2 || dataset == dataPro2 || dataset == dataEmg2) {
+								return '#efecdc';
+							}
+							else {
+								return 'white';
+							}
+						})
+					d3.select('#language')
+						.text(d.name);
+					d3.select('#expyr')
+						.text(d.exp);
+					d3.select('#details')
+						.text(d.description);
+
+					var matrix = this.getScreenCTM();
+
+               		HTMLabsoluteTip
+						.style('left', (window.pageXOffset + matrix.e) + 'px')
+						.style('top', (window.pageYOffset + matrix.f) + 'px');
+				})
+				.on('mouseout', function() {
+					return tooltip.style('opacity', '0');
+				});
 		}
 
-		var i = 0;
-
-		while (i < dataset.length) {
-			callArcs(i);
-			i++;
-		}
+		callArcs(dataAdv, '#advanced');
+		callArcs(dataPro, '#proficient');
+		callArcs(dataEmg, '#emerging');
 
 		</script>
 	</div>
 
 
 	<!-- Skills -->
-	<div class="container tanbg padbottom">
+	<div class="container tanbg padbottom text-center">
 		<div class="row">
 			<div class="twelve columns text-center">
 				<h1>Civil Engineering</h1>
@@ -298,38 +343,103 @@
 			</div>
 		</div>
 
+		<div class="row">
+			<h2>Advanced</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="advanced2">
+			</div>
+		</div>
+
+		<div class="row">
+			<h2>Proficient</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="proficient2">
+			</div>
+		</div>
+
+		<div class="row">
+			<h2>Emerging</h2>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="emerging2">
+			</div>
+		</div>
+
 
 		<script type="text/javascript">
-			var dataset2 = [
+			var dataAdv2 = [
 				{
 					"name":"Calculus",
-					"level":100,
-					"div":"#eng01",
+					"level":90,
+					"div":"adv",
 					"exp":5,
 					"description":"Detail of exp"
 				},
 				{
 					"name":"Physics",
 					"level":90,
-					"div":"#eng02",
+					"div":"adv",
 					"exp":3,
 					"description":"Detail of exp 2"
 				},
 				{
 					"name":"Chemistry",
-					"level":85,
-					"div":"#eng03",
-					"exp":3,
-					"description":"Detail of exp 2"
-				},
-				{
-					"name":"Biology",
-					"level":75,
-					"div":"#eng04",
+					"level":90,
+					"div":"adv",
 					"exp":3,
 					"description":"Detail of exp 2"
 				}
 			];
+
+			var dataPro2 = [
+				{
+					"name":"Biology",
+					"level":75,
+					"div":"pro",
+					"exp":3,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Statistics",
+					"level":55,
+					"div":"pro",
+					"exp":2,
+					"description":"Detail of exp 2"
+				}
+			];
+
+			var dataEmg2 = [
+				{
+					"name":"Mechanics",
+					"level":35,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Hydraulics",
+					"level":20,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				},
+				{
+					"name":"Structural",
+					"level":20,
+					"div":"emg",
+					"exp":1,
+					"description":"Detail of exp 2"
+				}
+			];
+
+			callArcs(dataAdv2, '#advanced2');
+			callArcs(dataPro2, '#proficient2');
+			callArcs(dataEmg2, '#emerging2');
 
 		</script>
 	</div>

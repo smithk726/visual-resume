@@ -162,7 +162,20 @@ p {
 :-ms-input-placeholder {
   color: #fecf00; }
 
-form ul .columns {
-  margin: 0; }
+.tooltip {
+  pointer-events: none;
+  /*let mouse events pass through*/
+  opacity: 0;
+  transition: opacity 0.3s; }
+  .tooltip p {
+    margin-left: 10px;
+    margin-right: 10px; }
+
+div.tooltip {
+  position: absolute;
+  text-align: center; }
+
+div.fixed {
+  position: fixed; }
 
 /*# sourceMappingURL=_custom.css.map */

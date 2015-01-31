@@ -196,6 +196,21 @@ p {
 	color:$dyellow;
 }
 
-form ul .columns{
-	margin:0;
+
+.tooltip {
+    pointer-events:none; /*let mouse events pass through*/
+    opacity:0;
+    transition: opacity 0.3s;
+    p {
+    	margin-left: 10px;
+    	margin-right: 10px;
+    }
+}
+
+div.tooltip {
+    position: absolute;
+    text-align:center;
+}
+div.fixed {
+    position:fixed;
 }
