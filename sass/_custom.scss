@@ -114,15 +114,6 @@ p {
 
 
 //abilities
-.abilifytop {
-	border-bottom: 1px solid $tan;
-}
-.abilify {
-	border-bottom: 1px solid $tan;
-	margin-top:15px;
-}
-
-
 .arc {
 	text-align:center;
 	margin-right:35px;
@@ -134,6 +125,26 @@ p {
 }
 .arc:last-child {
 	margin-right:0px;
+}
+
+.bartext {
+	font-size:26px;
+}
+
+.expaxis path,
+.expaxis line {
+	fill:none;
+	stroke:#000;
+	shape-rendering:crispEdges;
+}
+
+.expaxis path {
+	display:none;
+}
+
+.expaxis line {
+	stroke: #777;
+	stroke-dasharray:2,2;
 }
 
 
@@ -149,52 +160,6 @@ p {
 	font-size:10px;
 }
 
-
-
-
-//contact
-.myfield {
-	position:relative;
-	width:100%;
-	margin-bottom: 10px;
-	vertical-align:middle;
-	font-size: 16px;
-	overflow: hidden;
-}
-
-.box {
-	position:relative;
-	border:none;
-	border-bottom: 2px solid $green;
-	padding: 40px 20px;
-	height:36px;
-	line-height:34px;
-	font-size:2rem;
-
-	max-width:100%;
-	width:100%;
-	outline:none;
-	resize:none;
-
-	font-family: "Comfortaa";
-	font-weight:300;
-	box-shadow:none;
-
-	color:$dyellow;
-}
-
-::-webkit-input-placeholder {
-	color:$dyellow;
-}
-:-moz-placeholder {
-	color:$dyellow;
-}
-::-moz-placeholder {
-	color:$dyellow;
-}
-:-ms-input-placeholder {
-	color:$dyellow;
-}
 
 
 .tooltip {

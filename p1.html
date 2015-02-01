@@ -29,7 +29,7 @@
 	</div>
 
 
-	<!-- About -->
+	<!-- Web -->
 	<div class="container padbottom text-center">
 
 		<div class="absolute tooltip" id="toolit">
@@ -146,15 +146,15 @@
 		function callArcs(dataset, puthere) {
 
 			//variables
-			var arcD = 240,
-				proArcD = 200,
+			var arcD = 210,
+				proArcD = 190,
 				emgArcD = 160,
 				adv = 90,
 				pro = 50,
-				advInner = 80,
-				advOuter = 120,
+				advInner = 70,
+				advOuter = 105,
 				proInner = 70,
-				proOuter = 100,
+				proOuter = 95,
 				emgInner = 60,
 				emgOuter = 80;
 
@@ -242,7 +242,7 @@
 						return '#efecdc';
 					}
 					else {
-						return 'white';
+						return '#dcd9c7';
 					}
 				})
 				.attr('d', drawArc)
@@ -289,7 +289,8 @@
 			}
 
 			//them darned tooltips
-			var tooltip = d3.selectAll(".tooltip:not(.css)");
+			//with a gracious amount of disection of http://codepen.io/recursiev/pen/zpJxs/
+			var tooltip = d3.selectAll(".tooltip");
 			var HTMLabsoluteTip = d3.select("div.tooltip.absolute");
 
 			d3.select(puthere).selectAll('svg')
@@ -331,10 +332,173 @@
 		callArcs(dataEmg, '#emerging');
 
 		</script>
+
+		<div class="row">
+			<br>
+			<hr>
+			<h1>Tools</h1>
+		</div>
+
+		<div class="row">
+			<div class="six columns text-center">
+				<p><i class="icon-stop" style="color:#4eae83"></i> Advanced <i class="icon-stop" style="color:#9fd4cb"></i> Proficient <i class="icon-stop"></i> Emerging</p>
+			</div>
+			<div class="six columns text-center">
+				<p><i class="icon-info" style="color:#4eae83"></i>Based on years experience</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="webTools">
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var dataTools = [
+				{
+					"name":"Ps",
+					"years":"6",
+					"div":"adv"
+				},
+				{
+					"name":"Ai",
+					"years":"3",
+					"div":"pro"
+				},
+				{
+					"name":"Maya",
+					"years":"2",
+					"div":"pro"
+				},
+				{
+					"name":"GitHub",
+					"years":"1",
+					"div":"pro"
+				},
+				{
+					"name":"Id",
+					"years":"1",
+					"div":"emg"
+				}
+			];
+
+		function callTools(dataTool, divid) {
+			var w = parseInt(d3.select(divid).style('width'), 10);
+			var h = 300;
+
+			var padding = 20;
+
+			var margin = {top:20, right:20, bottom:0, left:20};
+
+			w = w - margin.left - margin.right;
+
+			var x = d3.scale.ordinal()
+				.domain(d3.range(dataTool.length))
+				.rangeRoundBands([padding,w], 0.1);
+
+			var y = d3.scale.linear()
+				.domain([0, d3.max(dataTool, function(d) {
+					return d['years'];
+				})])
+				.range([h-padding,padding]);
+
+			var toolDisplay = d3.select(divid)
+				.append('svg')
+				.attr('width',w)
+				.attr('height',h);
+
+			var yAxis = d3.svg.axis()
+				.scale(y)
+				.orient('right')
+				.ticks(6)
+				.tickSize(w);
+
+			toolDisplay.selectAll('rect')
+				.data(dataTool)
+				.enter()
+				.append('rect')
+				.attr('x', function(d, i) {
+					return x(i);
+				})
+				.attr('y', function(d) {
+					return y(d['years']);
+				})
+				.attr('width', x.rangeBand())
+				.attr('height', function(d) {
+					return y(0)-y(d.years);
+				})
+				.attr('fill', function(d) {
+					if (d['div'] == 'adv') {
+						return '#4eae83';
+					}
+					else if (d['div'] == 'pro') {
+						return '#9fd4cb';
+					}
+					else {
+						return '#fecf00';
+					}
+				});
+
+			toolDisplay.selectAll('text')
+				.data(dataTool)
+				.enter()
+				.append('text')
+				.text(function(d) {
+					return d['name'];
+				})
+				.attr('text-anchor', 'middle')
+				.attr('x', function(d,i) {
+					return x(i)+x.rangeBand()/2;
+				})
+				.attr('y', function(d) {
+					return y(d['years'])+30;
+				})
+				.attr('class', 'bartext');
+
+			d3.select(window).on('resize', resize);
+
+			function resize() {
+				//update the width
+				w = parseInt(d3.select('#webTools').style('width'), 10);
+				w = w - margin.left - margin.right;
+
+				//update x range
+				//x.rangeRoundBands([padding,w], 0.1);
+				x = d3.scale.ordinal()
+					.domain(d3.range(dataTool.length))
+					.rangeRoundBands([padding,w], 0.1);
+
+				toolDisplay.attr('width',w);
+
+				toolDisplay.selectAll('rect')
+					.attr('x', function(d, i) {
+						return x(i);
+					})
+					.attr('width', x.rangeBand());
+
+				toolDisplay.selectAll('text')
+					.attr('x', function(d,i) {
+						return x(i)+x.rangeBand()/2;
+					});
+
+				yAxis.tickSize(w);
+			}
+
+			toolDisplay.append('g')
+				.attr('class','expaxis')
+				.call(yAxis)
+				.selectAll('text')
+				.attr('x',4)
+				.attr('dy',-4);
+			}
+
+			callTools(dataTools, '#webTools');
+
+		</script>
 	</div>
 
 
-	<!-- Skills -->
+	<!-- Civil -->
 	<div class="container tanbg padbottom text-center">
 		<div class="row">
 			<div class="twelve columns text-center">
@@ -367,6 +531,26 @@
 
 		<div class="row">
 			<div class="twelve columns" id="emerging2">
+			</div>
+		</div>
+
+		<div class="row">
+			<br>
+			<hr>
+			<h1>Tools</h1>
+		</div>
+
+		<div class="row">
+			<div class="six columns text-center">
+				<p><i class="icon-stop" style="color:#4eae83"></i> Advanced <i class="icon-stop" style="color:#9fd4cb"></i> Proficient <i class="icon-stop"></i> Emerging</p>
+			</div>
+			<div class="six columns text-center">
+				<p><i class="icon-info" style="color:#4eae83"></i>Based on years experience</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="twelve columns" id="civilTools">
 			</div>
 		</div>
 
@@ -437,16 +621,40 @@
 				}
 			];
 
+			var dataTools2 = [
+				{
+					"name":"MS Office",
+					"years":"6",
+					"div":"adv"
+				},
+				{
+					"name":"SolidWorks",
+					"years":"1",
+					"div":"emg"
+				},
+				{
+					"name":"AutoCAD",
+					"years":"1",
+					"div":"emg"
+				},
+				{
+					"name":"Bid Room",
+					"years":"1",
+					"div":"emg"
+				}
+			];
+
 			callArcs(dataAdv2, '#advanced2');
 			callArcs(dataPro2, '#proficient2');
 			callArcs(dataEmg2, '#emerging2');
+			callTools(dataTools2, '#civilTools');
 
 		</script>
 	</div>
 
 
 	<!-- Experience -->
-	<div class="container padbottom greenbg">
+	<div class="container padbottom">
 		<div class="row bottomheavy text-center">
 			<h1 style="padding-bottom:5px">Experience</h1>
 			<h5 style="color:#282828"></h5>
@@ -516,7 +724,7 @@
 
 
 	<!-- footer2 -->
-	<div class="footer2">
+	<div class="footer2 tanbg">
 		<div class="row">
 			<div class="four columns">
 				<h6>Made with <i class="icon-heart"></i> in Florida</h6>

@@ -97,13 +97,6 @@ p {
   vertical-align: middle;
   width: 100%; }
 
-.abilifytop {
-  border-bottom: 1px solid #efecdc; }
-
-.abilify {
-  border-bottom: 1px solid #efecdc;
-  margin-top: 15px; }
-
 .arc {
   text-align: center;
   margin-right: 35px;
@@ -116,6 +109,22 @@ p {
 .arc:last-child {
   margin-right: 0px; }
 
+.bartext {
+  font-size: 26px; }
+
+.expaxis path,
+.expaxis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges; }
+
+.expaxis path {
+  display: none; }
+
+.expaxis line {
+  stroke: #777;
+  stroke-dasharray: 2,2; }
+
 .axis path,
 .axis line {
   fill: none;
@@ -124,43 +133,6 @@ p {
 
 .axis text {
   font-size: 10px; }
-
-.myfield {
-  position: relative;
-  width: 100%;
-  margin-bottom: 10px;
-  vertical-align: middle;
-  font-size: 16px;
-  overflow: hidden; }
-
-.box {
-  position: relative;
-  border: none;
-  border-bottom: 2px solid #4eae83;
-  padding: 40px 20px;
-  height: 36px;
-  line-height: 34px;
-  font-size: 2rem;
-  max-width: 100%;
-  width: 100%;
-  outline: none;
-  resize: none;
-  font-family: "Comfortaa";
-  font-weight: 300;
-  box-shadow: none;
-  color: #fecf00; }
-
-::-webkit-input-placeholder {
-  color: #fecf00; }
-
-:-moz-placeholder {
-  color: #fecf00; }
-
-::-moz-placeholder {
-  color: #fecf00; }
-
-:-ms-input-placeholder {
-  color: #fecf00; }
 
 .tooltip {
   pointer-events: none;
