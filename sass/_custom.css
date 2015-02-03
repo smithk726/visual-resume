@@ -74,7 +74,7 @@ p {
   text-align: right; }
 
 .footer2 {
-  margin: 15px 0 15px 0; }
+  padding: 15px 0 15px 0; }
 
 .container {
   width: 100%;
@@ -133,6 +133,9 @@ p {
 
 .axis text {
   font-size: 10px; }
+
+.timeline {
+  border-right: 5px solid #4eae83; }
 
 .tooltip {
   pointer-events: none;

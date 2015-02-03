@@ -40,6 +40,7 @@
 
 		<div class="row bottomheavy text-center">
 			<h1>Web Design</h1>
+			<p>With focus on front end design, user interaction and web applications in education</p>
 			<hr>
 		</div>
 
@@ -70,21 +71,21 @@
 			</div>
 		</div>
 
-		<script>
+		<script type="text/javascript">
 		var dataAdv = [
 				{
 					"name":"HTML",
 					"level":95,
 					"div":"adv",
 					"exp":5,
-					"description":"Detail of exp"
+					"description":"Advanced coursework, HTML5 Canvas"
 				},
 				{
 					"name":"CSS",
 					"level":90,
 					"div":"adv",
 					"exp":5,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework"
 				}
 			];
 
@@ -94,28 +95,28 @@
 					"level":70,
 					"div":"pro",
 					"exp":2,
-					"description":"Detail of exp"
+					"description":"Advanced coursework"
 				},
 				{
 					"name":"MySQL",
 					"level":65,
 					"div":"pro",
 					"exp":2,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework"
 				},
 				{
 					"name":"SASS",
 					"level":60,
 					"div":"pro",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework"
 				},
 				{
 					"name":"JavaScript",
 					"level":50,
 					"div":"pro",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework, MEAN stack, d3.js"
 				}
 			];
 
@@ -125,21 +126,21 @@
 					"level":30,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework"
 				},
 				{
 					"name":"C",
 					"level":40,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework"
 				},
 				{
 					"name":"Python",
 					"level":20,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework, Physics"
 				}
 			];
 
@@ -289,7 +290,7 @@
 			}
 
 			//them darned tooltips
-			//with a gracious amount of disection of http://codepen.io/recursiev/pen/zpJxs/
+			//with a gracious amount of dissection of http://codepen.io/recursiev/pen/zpJxs/
 			var tooltip = d3.selectAll(".tooltip");
 			var HTMLabsoluteTip = d3.select("div.tooltip.absolute");
 
@@ -382,7 +383,7 @@
 				}
 			];
 
-		function callTools(dataTool, divid) {
+			function callTools(dataTool, divid) {
 			var w = parseInt(d3.select(divid).style('width'), 10);
 			var h = 300;
 
@@ -503,6 +504,7 @@
 		<div class="row">
 			<div class="twelve columns text-center">
 				<h1>Civil Engineering</h1>
+				<p>With focus on water resources, hydraulic and water and wastewater treatment engineering</p>
 				<hr>
 			</div>
 		</div>
@@ -562,21 +564,21 @@
 					"level":90,
 					"div":"adv",
 					"exp":5,
-					"description":"Detail of exp"
+					"description":"Advanced coursework, in-field applications"
 				},
 				{
 					"name":"Physics",
 					"level":90,
 					"div":"adv",
 					"exp":3,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework, in-field applications"
 				},
 				{
 					"name":"Chemistry",
 					"level":90,
 					"div":"adv",
 					"exp":3,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework"
 				}
 			];
 
@@ -586,14 +588,14 @@
 					"level":75,
 					"div":"pro",
 					"exp":3,
-					"description":"Detail of exp 2"
+					"description":"Advanced coursework"
 				},
 				{
 					"name":"Statistics",
 					"level":55,
 					"div":"pro",
 					"exp":2,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework, in-field applications"
 				}
 			];
 
@@ -603,21 +605,21 @@
 					"level":35,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework"
 				},
 				{
 					"name":"Hydraulics",
 					"level":20,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework"
 				},
 				{
 					"name":"Structural",
 					"level":20,
 					"div":"emg",
 					"exp":1,
-					"description":"Detail of exp 2"
+					"description":"Intro coursework"
 				}
 			];
 
@@ -663,63 +665,235 @@
 
 		<div class="row">
 			<div class="twelve columns" id="expHolder">
-				<script type="text/javascript">
-				/*  few sections focusing on the areas you want to focus on (code and design)
-				*/
-						var w = 800;
-						var h = 200;
-
-						var x = d3.scale.linear()
-							.domain([0,2])
-							.range([0,w]);
-
-						//line data
-						var line01 = [
-							{'x':5, 'y':5},
-							{'x':200, 'y':5}
-						];
-						//lets try adding a second line
-						var line02 = [
-							{'x':25, 'y':45},
-							{'x':500, 'y':45}
-						];
-
-						//accessor function to draw the line
-						var drawLine = d3.svg.line()
-							.x(function(d) {
-								return d.x;
-							})
-							.y(function(d) {
-								return d.y;
-							})
-							.interpolate('linear');
-						//svg container
-						var lineDisplay = d3.select('#expHolder').append('svg')
-							.attr('width', w)
-							.attr('height', h);
-						//draw the line path
-						var lineGraph = lineDisplay.append('path')
-							.attr('d', drawLine(line01))
-							.attr('stroke', '#efecdc')
-							.attr('stroke-width',10)
-							.attr('fill','none');
-						var lineGraph = lineDisplay.append('path')
-							.attr('d', drawLine(line02))
-							.attr('stroke', '#4eae83')
-							.attr('stroke-width',10)
-							.attr('fill','none');
-
-						var xaxis = d3.svg.axis()
-							.scale(x)
-							.orient('bottom');
-						lineDisplay.append('g')
-							.attr('class','axis')
-							.attr('transform','translate(0,' + (h-20) + ')')
-							.call(xaxis);
-					</script>
 			</div>
-
 		</div>
+
+		<div class="row" id="expDes02">
+			<div class="three columns text-center" style="height:201px">
+				<img src="img/ticket.png">
+			</div>
+			<div class="nine columns">
+				<h2>Wet n' Wild</h2>
+				<p><strong>Title:</strong> Express Pass Attendant</p>
+				<p><strong>Job Description & Responsibilities:</strong> Daily operation, opening and closing duties of attractions; ensure good customer service, experience and safety; cabana oversight</p>
+			</div>
+		</div>
+
+		<div class="row" id="expDes03">
+			<div class="three columns text-center" style="height:210px">
+				<img src="img/food.png">
+			</div>
+			<div class="nine columns">
+				<h2>Disney</h2>
+				<p><strong>Title:</strong> Food Service</p>
+				<p><strong>Job Description & Responsibilities:</strong> Daily operation, opening and closing duties of attractions; ensure good customer service and experience; money and inventory management</p>
+			</div>
+		</div>
+
+		<div class="row" id="expDes01">
+			<div class="three columns text-center" style="height:170px">
+				<img src="img/ucf.png">
+			</div>
+			<div class="nine columns">
+				<h2>UCF</h2>
+				<p><strong>Majors:</strong> Web Design, Civil Engineering</p>
+				<p>Estimated Graduation: 2017</p>
+			</div>
+		</div>
+
+		<div class="row" id="expDes04">
+			<div class="three columns text-center">
+				<img src="img/tele.png">
+			</div>
+			<div class="nine columns">
+				<h2>Turnure Telecom</h2>
+				<p><strong>Title:</strong> Assistant Project Manager, Intern</p>
+				<p><strong>Location:</strong> Corvallis, OR; Oregon State University, Reser Stadium</p>
+				<p><strong>Job Description & Responsibilities:</strong> Immediate assistant to project manager; communicate with project manager and sub-contractors; materials, safety and inventory management</p>
+			</div>
+		</div>
+
+			<script type="text/javascript">
+
+				var w2 = parseInt(d3.select('#expHolder').style('width'), 10);
+
+				var padding = 20;
+
+				var margin2 = {top:20, right:0, bottom:0, left:0};
+
+				w2 = w2 - margin2.left - margin2.right;
+				var h = 150;
+
+				var x2 = d3.time.scale()
+					.domain([new Date(2015, 1, 1), new Date(2008,12,1)])
+					.range([w2-padding,padding]);
+
+
+				var line01 = [
+					{'x':315, 'y':75},
+					{'x':w2-padding, 'y':75}
+				];
+
+				var line02 = [
+					{'x':padding, 'y':90},
+					{'x':100, 'y':90}
+				];
+
+				var line03 = [
+					{'x':200, 'y':90},
+					{'x':300, 'y':90}
+				];
+
+				var line04 = [
+					{'x':800, 'y':50},
+					{'x':870, 'y':50}
+				];
+
+				var area01 = d3.svg.area()
+					.x(function(d) {
+						return d.x;
+					})
+					.y0(h-padding)
+					.y1(function(d) {
+						return d.y;
+					});
+
+				//accessor function to draw the line
+				var drawLine = d3.svg.line()
+					.x(function(d) {
+						return d.x;
+					})
+					.y(function(d) {
+						return d.y;
+					})
+					.interpolate('linear');
+
+				//svg container
+				var lineDisplay = d3.select('#expHolder').append('svg')
+					.attr('width', w2)
+					.attr('height', h);
+
+				//draw the line
+				var lineGraph = lineDisplay.append('path')
+					.attr('d', drawLine(line01))
+					.attr('stroke', '#efecdc')
+					.attr('stroke-width',2)
+					.attr('fill','none');
+
+				var lineGraph2 = lineDisplay.append('path')
+					.attr('d', drawLine(line02))
+					.attr('stroke', '#9fd4cb')
+					.attr('stroke-width',2)
+					.attr('fill','none');
+
+				var lineGraph3 = lineDisplay.append('path')
+					.attr('d', drawLine(line03))
+					.attr('stroke', '#fecf00')
+					.attr('stroke-width',2)
+					.attr('fill','none');
+
+				var lineGraph3 = lineDisplay.append('path')
+					.attr('d', drawLine(line04))
+					.attr('stroke', '#4eae83')
+					.attr('stroke-width',2)
+					.attr('fill','none');
+
+				d3.select('#expDes02').style('display','none');
+				d3.select('#expDes04').style('display','none');
+				d3.select('#expDes03').style('display','none');
+
+				//area
+				lineDisplay.append('path')
+					.datum(line01)
+					.attr('fill', '#efecdc')
+					.attr('stroke-width',0)
+					.attr('d',area01)
+					.on('mouseover', function(d) {
+						d3.select(this).attr('fill','#dcd9c7');
+						d3.select('#expDes01').style('display','block');
+						d3.select('#expDes02').style('display','none');
+						d3.select('#expDes04').style('display','none');
+						d3.select('#expDes03').style('display','none');
+					})
+					.on('mouseout', function(d) {
+						d3.select(this).attr('fill','#efecdc');
+					});
+
+				lineDisplay.append('path')
+					.datum(line02)
+					.attr('fill', '#9fd4cb')
+					.attr('stroke-width',0)
+					.attr('d',area01)
+					.on('mouseover', function(d) {
+						d3.select(this).attr('fill','#95c9c0');
+						d3.select('#expDes01').style('display','none');
+						d3.select('#expDes02').style('display','block');
+						d3.select('#expDes04').style('display','none');
+						d3.select('#expDes03').style('display','none');
+					})
+					.on('mouseout', function(d) {
+						d3.select(this).attr('fill','#9fd4cb');
+					});
+
+				lineDisplay.append('path')
+					.datum(line03)
+					.attr('fill', '#fecf00')
+					.attr('stroke-width',0)
+					.attr('d',area01)
+					.on('mouseover', function(d) {
+						d3.select(this).attr('fill','#f0c401');
+						d3.select('#expDes01').style('display','none');
+						d3.select('#expDes02').style('display','none');
+						d3.select('#expDes04').style('display','none');
+						d3.select('#expDes03').style('display','block');
+					})
+					.on('mouseout', function(d) {
+						d3.select(this).attr('fill','#fecf00');
+					});
+
+				lineDisplay.append('path')
+					.datum(line04)
+					.attr('fill', '#4eae83')
+					.attr('stroke-width',0)
+					.attr('d',area01)
+					.on('mouseover', function(d) {
+						d3.select(this).attr('fill','#48a57c');
+						d3.select('#expDes01').style('display','none');
+						d3.select('#expDes02').style('display','none');
+						d3.select('#expDes04').style('display','block');
+						d3.select('#expDes03').style('display','none');
+					})
+					.on('mouseout', function(d) {
+						d3.select(this).attr('fill','#4eae83');
+					});
+
+				//texts
+				lineDisplay.append('text')
+					.attr('transform','translate(' + line01[0].x + ',' + (line01[0].y-5) + ')')
+					.attr('font-size',24)
+					.text('UCF');
+				lineDisplay.append('text')
+					.attr('transform','translate(' + line02[0].x + ',' + (line02[0].y-5) + ')')
+					.attr('font-size',24)
+					.text("Wet n' Wild");
+				lineDisplay.append('text')
+					.attr('transform','translate(' + line03[0].x + ',' + (line03[0].y-5) + ')')
+					.attr('font-size',24)
+					.text("Disney");
+				lineDisplay.append('text')
+					.attr('transform','translate(' + line04[0].x + ',' + (line04[0].y-5) + ')')
+					.attr('font-size',24)
+					.text("Turnure");
+
+				//axis
+				var xaxis = d3.svg.axis()
+					.scale(x2)
+					.orient('bottom');
+				lineDisplay.append('g')
+					.attr('class','axis')
+					.attr('transform','translate(0,' + (h-20) + ')')
+					.call(xaxis);
+			</script>
 	</div>
 
 
@@ -730,7 +904,7 @@
 				<h6>Made with <i class="icon-heart"></i> in Florida</h6>
 			</div>
 			<div class="push_three five columns">
-				<h6 class="righty">2015. All Rights Reserved.</h6>
+				<h6 class="righty">2015</h6>
 			</div>
 		</div>
 	</div>

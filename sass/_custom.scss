@@ -82,7 +82,7 @@ p {
 	text-align:right;
 }
 .footer2 {
-	margin: 15px 0 15px 0;
+	padding: 15px 0 15px 0;
 }
 
 
@@ -147,6 +147,13 @@ p {
 	stroke-dasharray:2,2;
 }
 
+#expDes01 {
+	//pointer-events:none; /*let mouse events pass through*/
+    //opacity:0;
+    //transition: opacity 0.3s;
+    //display: none;
+}
+
 
 
 //exp
@@ -158,6 +165,10 @@ p {
 }
 .axis text {
 	font-size:10px;
+}
+
+.timeline {
+	border-right: 5px solid $green;
 }
 
 
